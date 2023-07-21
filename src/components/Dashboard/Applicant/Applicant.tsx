@@ -4,16 +4,9 @@ import { Button } from "../../../@/components/ui/button"
 import { Toast } from "../../../@/components/ui/toast"
 import { Checkbox } from "../../../@/components/ui/checkbox"
 
-
- 
 const Applicant = () => {
   const [haveTraveled, setHaveTraveled] = useState(false);
-
-
    const handleDropdownChange = (value:any) => {
-    
-   
-  
   };
   
   const result: any[] = [];
@@ -22,19 +15,13 @@ const Applicant = () => {
 
     setComponents([...components, <AddHistory/>]);
    
-
    };
     
  
   return (
     <div className="Applicant-inner   pb-5 "  style={{paddingTop:"4rem"}}>
        
-       
-       
-        
-       
-
-
+      
     
       <Button type="button"  onClick={handleAddComponent} className="mr-16">Add Travel History</Button> 
     
