@@ -1,0 +1,61 @@
+.navbar{
+  position: fixed;
+  width:100%;
+  top:0;
+}
+.navbar-light .navbar-toggler {
+  
+  border: none;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+   
+}
+.offcanvas-body .icons{
+  color:#2d2727;
+  height: 24px;
+  width: 24px;
+ }
+.offcanvas
+{
+  background-color: #fafafa; 
+}
+.offcanvas-body{   
+  padding-left: 45px;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+}
+.offcanvas-body  a{
+  display: flex;
+  align-items: center;
+ 
+  color: #2d2727;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  height:50px;
+} 
+.offcanvas-body  li:hover a{
+  background-color: black;
+  color:white !important
+}
+.offcanvas-body   li:hover .icons{
+  background-color: black;
+  color:white !important
+}
+
+.offcanvas-body  li{
+  width: 100%;
+}
+.active{
+  background-color: black;
+  color: white;
+}
+.active a, .active .icons{
+    color: white;
+
+}
