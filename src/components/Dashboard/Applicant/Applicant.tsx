@@ -39,7 +39,6 @@ const Applicant = () => {
 
     setComponents([...components, <AddHistory/>]);
    
-
    };
    const handleRemoveComponent = () => {
 

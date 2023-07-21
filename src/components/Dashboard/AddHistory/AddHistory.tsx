@@ -18,16 +18,54 @@ import { object, string, date } from 'zod';
  import * as z from "zod"
 
  const formSchema = z.object({
-
-  
-   startdate: z.string().min(7, {
-    message: "must be at least 7 characters.",
+   startdate: z.string()
+   .refine((value) => {
+     // Custom validation function to check the date format
+     const dateRegex = /^\d{4}\/\d{2}$/;
+      return dateRegex.test(value);
+   }, {
+    message: "Invalid date format. Use the format 'YYYY/MM'.", 
+   })
+   .refine((value) => {
+    // Custom validation function to check if the date is in the future
+    const [year, month] = value.split("/").map(Number);
+    const currentDate = new Date();
+    const currentYear=currentDate.getFullYear();
+    if(year>currentYear)
+    {
+      return false;
+    }
+    return true;
+  }, {
+    message: "The date cannot be in the future.", 
   }),
-
+  enddate: z.string()
+   .refine((value) => {
+     // Custom validation function to check the date format
+     const dateRegex = /^\d{4}\/\d{2}$/;
+      return dateRegex.test(value);
+   }, {
+    message: "Invalid date format. Use the format 'YYYY/MM'.", 
+   })
+   .refine((value) => {
+    // Custom validation function to check if the date is in the future
     
-   enddate: z.string().min(7, {
-     message: "must be at least 7 characters.",
-   }),
+    const [year, month] = value.split("/").map(Number);
+    const currentDate = new Date();
+    const currentYear=currentDate.getFullYear();
+    if(year>currentYear)
+    {
+      return false;
+    }
+    return true;
+    
+  }, {
+    message: "The date cannot be in the future.", 
+  }),
+    
+
+
+
 
    destination: z.string().max(31, {
      message: "maximum 31 characters allowed",
@@ -82,8 +120,9 @@ export default function AddHistory() {
             <FormItem>
               <FormLabel className="mb-3 font-normal">From (YYYY/MM)</FormLabel>
               <FormControl>
-                <Input placeholder="Example:2022/21" {...field} />
+                <Input placeholder="Example:2010/12" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -97,8 +136,9 @@ export default function AddHistory() {
             <FormItem>
               <FormLabel className="mb-3 font-normal">To (YYYY/MM)</FormLabel>
               <FormControl>
-                <Input placeholder="Example:2022/21" {...field} />
+                <Input placeholder="Example:2011/12" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
