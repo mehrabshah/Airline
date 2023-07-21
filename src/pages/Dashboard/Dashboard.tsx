@@ -3,11 +3,8 @@ import './Dashboard.css';
 import Navbar from "../../components/Dashboard/Navbar/Navbar"
 import Sidebar from '../../components/Dashboard/Sidebar/Sidebar'
 import Spouse from '../../components/Dashboard/Spouse/Spouse';
-import TabsSelect from '../../components/Dashboard/TabsSelect/TabsSelect';
-
-
+import TabsSelect from '../../components/Dashboard/TravelHistory/TravelHistory';
 export default function Dashboard() {
-
   return (
     <>    
         <Navbar /> 
