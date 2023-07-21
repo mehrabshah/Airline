@@ -87,21 +87,25 @@ const Applicant = () => {
     
 
     {components.map((Component, index) => (
-      <div key={index} className="mt-4">
+      <div key={index} className="mt-0 mb-5">
           {Component}
         </div>
       ))} 
+<div className="w-100 d-flex justify-content-between">
 
       {travelBefore && (
-          <Button type="button" onClick={handleAddComponent} className="mr-16">
+        <Button type="button" onClick={handleAddComponent} className="mr-16">
             Add Travel History
           </Button>
         )}
       {components.length>0 && (
-          <Button type="button" onClick={handleRemoveComponent} className="mr-16">
+        <Button type="button" onClick={handleRemoveComponent} className="mr-16">
             Remove Travel History
           </Button>
         )}
+        </div>
+
+
     </div>
   );
 };

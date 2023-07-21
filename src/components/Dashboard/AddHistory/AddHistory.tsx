@@ -203,7 +203,7 @@ export default function AddHistory() {
 
           </div> 
  
-          <Button type="submit">Submit</Button>
+            <Button type="submit">Submit</Button> 
       </form>
     </Form>          
  
