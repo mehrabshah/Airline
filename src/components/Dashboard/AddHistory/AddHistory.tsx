@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "../../../@/components/ui/button"
-import { useForm, Controller } from 'react-hook-form';
+
+import { useForm, FormProvider, Controller } from 'react-hook-form';
 import { object, string, date } from 'zod';
  import TextInput from '../../../Shared/Text/TextInput';
  import {
@@ -16,69 +17,7 @@ import { object, string, date } from 'zod';
 
  import { zodResolver } from "@hookform/resolvers/zod"
  import * as z from "zod"
-
- const formSchema = z.object({
-   startdate: z.string()
-   .refine((value) => {
-     // Custom validation function to check the date format
-     const dateRegex = /^\d{4}\/\d{2}$/;
-      return dateRegex.test(value);
-   }, {
-    message: "Invalid date format. Use the format 'YYYY/MM'.", 
-   })
-   .refine((value) => {
-    // Custom validation function to check if the date is in the future
-    const [year, month] = value.split("/").map(Number);
-    const currentDate = new Date();
-    const currentYear=currentDate.getFullYear();
-    if(year>currentYear)
-    {
-      return false;
-    }
-    return true;
-  }, {
-    message: "The date cannot be in the future.", 
-  }),
-  enddate: z.string()
-   .refine((value) => {
-     // Custom validation function to check the date format
-     const dateRegex = /^\d{4}\/\d{2}$/;
-      return dateRegex.test(value);
-   }, {
-    message: "Invalid date format. Use the format 'YYYY/MM'.", 
-   })
-   .refine((value) => {
-    // Custom validation function to check if the date is in the future
-    
-    const [year, month] = value.split("/").map(Number);
-    const currentDate = new Date();
-    const currentYear=currentDate.getFullYear();
-    if(year>currentYear)
-    {
-      return false;
-    }
-    return true;
-    
-  }, {
-    message: "The date cannot be in the future.", 
-  }),
-    
-
-
-
-
-   destination: z.string().max(31, {
-     message: "maximum 31 characters allowed",
-   }),
-   length: z.string().max(6, {
-      message: "maximum 6 characters allowed.",
-    }),
-    business: z.string().max(31, {
-      message: "maximum 31 characters allowed",
-    }),
-  
- 
- })
+ import { formSchema } from "../../../Shared/validations";
 
 export default function AddHistory() {
 
@@ -106,6 +45,7 @@ export default function AddHistory() {
 
   return (
     <>
+
 
        <Form {...form}>
       <form  className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
@@ -206,8 +146,6 @@ export default function AddHistory() {
             <Button type="submit">Submit</Button> 
       </form>
     </Form>          
- 
-
       
     </>
   )
