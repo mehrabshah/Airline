@@ -15,7 +15,7 @@ export default function Dashboard() {
          <Sidebar />
       </div>
        <div className='Applicant'>
-        <div className=' container mt-4'>
+        <div className=' container mt-4 p-0 m-0'>
             <TabsSelect />   
          
          </div>

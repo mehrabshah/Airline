@@ -9,7 +9,7 @@ export default function TabsSelect() {
   return (
     <>
        <Tabs defaultValue="account">
-  <TabsList className='fixed z-10  '>
+  <TabsList className='fixed z-10 sm:block flex justify-center '>
     <TabsTrigger value="applicant">Applicant</TabsTrigger>
     <TabsTrigger value="spouse">Spouse</TabsTrigger>
     <TabsTrigger value="children">Children</TabsTrigger>
