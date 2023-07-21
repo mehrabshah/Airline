@@ -3,20 +3,36 @@ import AddHistory from "../AddHistory/AddHistory";
 import { Button } from "../../../@/components/ui/button"
 import { Toast } from "../../../@/components/ui/toast"
 import { Checkbox } from "../../../@/components/ui/checkbox"
-
-
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../../@/components/ui/form"
+import { RadioGroup, RadioGroupItem } from "../../../@/components/ui/radio-group"
  
 const Children = () => {
-  const [haveTraveled, setHaveTraveled] = useState(false);
 
 
-  // const handleDropdownChange = (value:any) => {
-    
-  //   console.log("mehrab")
-
-  //   setHaveTraveled(value === 'yes');
-  // };
-  
+  const [count, setcount] = useState(false); // Default state is set to false
+  const [travelBefore, setTravelBefore] = useState(false); // Default state is set to false
+  const handleCheckboxChangeyes = (event:any) => {
+    console.log(event)
+    if(event === "no"){
+      setTravelBefore(false)
+      setComponents([]);
+      setcount(false)
+    }
+    if(event==="yes"){
+  setTravelBefore(true)
+      if(!count){
+        handleAddComponent()
+        setcount(true)
+      }
+    }
+  }
   const result: any[] = [];
    const [components, setComponents] = useState(result);
    const handleAddComponent = () => {
@@ -25,7 +41,15 @@ const Children = () => {
    
 
    };
-    
+   const handleRemoveComponent = () => {
+
+    const updatedComponents = [...components];
+    if (updatedComponents.length > 0) {
+      updatedComponents.pop();
+
+      setComponents(updatedComponents);
+    }
+   };
  
   return (
     <div className="Applicant-inner   pb-5 "  style={{paddingTop:"4rem"}}>
@@ -40,19 +64,45 @@ const Children = () => {
       </label>
     </div> */}
         
-
-
-
+        <div className="d-flex flex-column">
+          <div className="mb-2">
+        <p>Did not travel Before</p>
+          </div>
+        <div className="d-flex mb-2">
+        <RadioGroup
+                  onValueChange={handleCheckboxChangeyes}
+                  className="flex flex-col space-y-1"
+                >
+                  <div>
+                      <RadioGroupItem value="yes" className="me-2"/>
+                     Yes
+                  </div>
+                  <div>
+                      <RadioGroupItem value="no" className="me-2"/>
+                     No
+                  </div>
+                      </RadioGroup>
+        </div>
     
-      <Button type="button"  onClick={handleAddComponent} className="mr-16">Add Travel History</Button> 
+        </div>
     
 
     {components.map((Component, index) => (
-        <div key={index} className="mt-4">
+      <div key={index} className="mt-4">
           {Component}
         </div>
       ))} 
 
+      {travelBefore && (
+          <Button type="button" onClick={handleAddComponent} className="mr-16">
+            Add Travel History
+          </Button>
+        )}
+      {components.length>0 && (
+          <Button type="button" onClick={handleRemoveComponent} className="mr-16">
+            Remove Travel History
+          </Button>
+        )}
     </div>
   );
 };
