@@ -49,12 +49,10 @@ const formSchema = z.object({
 
  
 const Applicant = () => {
-
-  // const [selectedOption, setSelectedOption] = useState(false);
-  
-  //     const handleOptionChange = (e) => {
-  //        setSelectedOption(e.target.value);
-  //    };
+  const [haveTraveled, setHaveTraveled] = useState(false);
+  const handleDropdownChange = (value:any) => {
+    setHaveTraveled(value === 'yes');
+  };
   
   const result: any[] = [];
    const [components, setComponents] = useState(result);
@@ -80,7 +78,7 @@ const Applicant = () => {
      }
  
   return (
-    <div className="Applicant-inner pt-5 pb-5 ">
+    <div className="Applicant-inner   pb-5 "  style={{paddingTop:"4rem"}}>
        
 <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8  relative">
@@ -121,16 +119,16 @@ const Applicant = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="mb-3 font-normal">Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel className="mb-3 font-normal">Have You Traveled Before</FormLabel>
+              <Select onValueChange={handleDropdownChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="No" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">Yes</SelectItem>
-                  <SelectItem value="m@google.com">No</SelectItem>
+                  <SelectItem value="yes">Yes</SelectItem>
+                  <SelectItem value="no">No</SelectItem>
                   
                 </SelectContent>
               </Select>
@@ -149,7 +147,9 @@ const Applicant = () => {
 
         </div>
         <div className="d-flex justify-between mt-5">
-         <Button type="button"  onClick={handleAddComponent} className="mr-16">Add Travel History</Button> 
+        {haveTraveled ?
+<Button type="button"  onClick={handleAddComponent} className="mr-16">Add Travel History</Button> : ""
+}
          <Button type="submit">Submit</Button>
         </div>
   

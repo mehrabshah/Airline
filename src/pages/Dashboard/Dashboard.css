@@ -19,6 +19,12 @@
   padding: 0px 25px;
   position: relative;
 }
+.custom-button{
+  align-self: end;
+}
+.custom-form{
+  min-height: 60vh;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
